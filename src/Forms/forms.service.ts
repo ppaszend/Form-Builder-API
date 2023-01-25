@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Form, FormDocument } from './schemas/form.schema';
 import { Model } from 'mongoose';
@@ -7,8 +7,8 @@ import { Model } from 'mongoose';
 export class FormsService {
   constructor(@InjectModel(Form.name) private formModel: Model<FormDocument>) {}
 
-  findAll(page: number): string {
-    return 'Page ' + page;
+  findAll(): Promise<Form[]> {
+    return this.formModel.find({}).populate('theme').exec();
   }
 
   findOne(id: string): Promise<Form | null> {
@@ -17,5 +17,15 @@ export class FormsService {
 
   createOne(form: Form): Promise<Form> {
     return this.formModel.create(form);
+  }
+
+  async updateOne(id: string, newForm: Form): Promise<Form> {
+    const form = await this.formModel
+      .findByIdAndUpdate(id, newForm)
+      .setOptions({ overwrite: true, new: true });
+    if (!form) {
+      throw new NotFoundException();
+    }
+    return form;
   }
 }

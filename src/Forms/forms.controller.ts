@@ -5,6 +5,7 @@ import {
   HttpException,
   Param,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import { FormsService } from './forms.service';
@@ -15,8 +16,13 @@ export class FormsController {
   constructor(private readonly formsService: FormsService) {}
 
   @Get()
-  findAll(@Query('page') page = 1): string {
-    return this.formsService.findAll(page);
+  findAll(@Query('page') page = 1): Promise<Form[]> {
+    return this.formsService.findAll();
+  }
+
+  @Post()
+  createOne(@Body() form): Promise<Form> {
+    return this.formsService.createOne(form);
   }
 
   @Get(':id([0-9a-fA-F]{24})')
@@ -29,8 +35,8 @@ export class FormsController {
     return form;
   }
 
-  @Post()
-  createOne(@Body() form): Promise<Form> {
-    return this.formsService.createOne(form);
+  @Put(':id([0-9a-fA-F]{24})')
+  updateOne(@Param() param, @Body() form): Promise<Form> {
+    return this.formsService.updateOne(param.id, form);
   }
 }

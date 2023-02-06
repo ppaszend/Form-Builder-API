@@ -17,6 +17,15 @@ export class Form {
 
   @Prop()
   steps: [Field];
+
+  @Prop()
+  created: Date;
+
+  @Prop()
+  updated: Date;
+
+  @Prop()
+  active: boolean;
 }
 
 export const FormSchema = SchemaFactory.createForClass(Form);

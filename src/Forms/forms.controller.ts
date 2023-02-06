@@ -16,13 +16,21 @@ export class FormsController {
   constructor(private readonly formsService: FormsService) {}
 
   @Get()
-  findAll(@Query('page') page = 1): Promise<Form[]> {
-    return this.formsService.findAll();
+  findAll(
+    @Query('skip') skip = null,
+    @Query('limit') limit = null,
+  ): Promise<Form[]> {
+    return this.formsService.findAll(skip, limit);
   }
 
   @Post()
   createOne(@Body() form): Promise<Form> {
     return this.formsService.createOne(form);
+  }
+
+  @Get('count')
+  async countAll(): Promise<number> {
+    return await this.formsService.countAll();
   }
 
   @Get(':id([0-9a-fA-F]{24})')

@@ -33,3 +33,11 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+.env
+mongodb.docker.env
+application.docker.env
+
+# Docker Files
+init-mongo.js
+mongo-volume

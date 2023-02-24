@@ -1,16 +1,20 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Form, FormDocument } from './schemas/form.schema';
-import { Model } from 'mongoose';
+import { FilterQuery, Model, Types } from "mongoose";
 
 @Injectable()
 export class FormsService {
   constructor(@InjectModel(Form.name) private formModel: Model<FormDocument>) {}
 
-  async findAll(skip: number | null, limit: number | null): Promise<Form[]> {
+  async findAll(
+    skip: number | null,
+    limit: number | null,
+    filter: FilterQuery<Document & Form & {_id: Types.ObjectId}> = {}
+  ): Promise<Form[]> {
     if (limit === null) {
       return await this.formModel
-        .find({})
+        .find(filter)
         .skip(skip || 0)
         .populate('theme')
         .exec();
@@ -32,7 +36,7 @@ export class FormsService {
     return await this.formModel.collection.countDocuments();
   }
 
-  createOne(form: Form): Promise<Form> {
+  createOne(form: Form): Promise<FormDocument> {
     return this.formModel.create(form);
   }
 

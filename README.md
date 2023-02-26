@@ -44,7 +44,9 @@ Run the server
 $ npm run start:dev
 ```
 
-### production mode (docker)
+---------------------
+
+### Production mode (docker)
 You need to have ssl certificate keys in secrets directory:
  - private-key.pem
  - public-certificate.pem

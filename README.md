@@ -35,6 +35,7 @@ MAIL_PASS="{fill this field}"
 
 # Application Configuration
 JWT_SECRET="{fill this field}"
+ENABLE_SSL=false
 ```
 
 Run the server
@@ -43,6 +44,10 @@ $ npm run start:dev
 ```
 
 ### production mode (docker)
+You need to have ssl certificate keys in secrets directory:
+ - private-key.pem
+ - public-certificate.pem
+
 Create mongodb.docker.env file with filled following parameters:
 ```dotenv
 # MONGODB
@@ -66,6 +71,7 @@ MAIL_PASS="{fill this field}"
 
 # Application Configuration
 JWT_SECRET="{fill this field}"
+ENABLE_SSL=true
 ```
 
 Build docker container

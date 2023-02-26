@@ -15,11 +15,13 @@ services:
     env_file:
       - application.docker.env
     ports:
-      - "80:3000"
+      - "443:3000"
     depends_on:
       - mongodb
     networks:
       - mongodb
+    volumes:
+      - ./secrets:/user/src/app/secrets
 
 networks:
   mongodb:

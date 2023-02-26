@@ -34,9 +34,11 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# Secrets
 .env
 mongodb.docker.env
 application.docker.env
+secrets
 
 # Docker Files
 init-mongo.js

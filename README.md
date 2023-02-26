@@ -12,6 +12,7 @@ For production:
 
 ## Installation
 
+Only for development mode, in production mode this is done by docker itself
 ```bash
 $ npm install
 ```
@@ -25,17 +26,17 @@ Create .env file with filled following parameters:
 DB_ADDR=localhost
 DB_PORT=27017
 DB_NAME=MasterForms
-DB_USER="{fill this field}"
-DB_PASS="{fill this field}"
+DB_USER= #fill this field
+DB_PASS= #fill this field
 
 # Mail Sender Configuration
-MAIL_USER="{fill this field}"
-MAIL_DOMAIN="{fill this field}"
-MAIL_PASS="{fill this field}"
+MAIL_USER= #fill this field
+MAIL_DOMAIN= #fill this field
+MAIL_PASS= #fill this field
 
 # Application Configuration
-JWT_SECRET="{fill this field}"
-ENABLE_SSL=false
+JWT_SECRET= #fill this field
+ENABLE_SSL=false #false or true
 ```
 
 Run the server
@@ -51,8 +52,8 @@ You need to have ssl certificate keys in secrets directory:
 Create mongodb.docker.env file with filled following parameters:
 ```dotenv
 # MONGODB
-MONGO_INITDB_ROOT_USERNAME="{fill this field}"
-MONGO_INITDB_ROOT_PASSWORD="{fill this field}"
+MONGO_INITDB_ROOT_USERNAME #fill this field
+MONGO_INITDB_ROOT_PASSWORD= #fill this field
 ```
 
 Create application.docker.env file with filled following parameters:
@@ -61,17 +62,17 @@ Create application.docker.env file with filled following parameters:
 DB_ADDR=mongodb
 DB_PORT=27017
 DB_NAME=MasterForms
-DB_USER="{must be exactly the same as MONGO_INITDB_ROOT_USERNAME}"
-DB_PASS="{must be exactly the same as MONGO_INITDB_ROOT_PASSWORD}"
+DB_USER= #must be exactly the same as MONGO_INITDB_ROOT_USERNAME
+DB_PASS= #must be exactly the same as MONGO_INITDB_ROOT_PASSWORD
 
 # Mail Sender Configuration
-MAIL_USER="{fill this field}"
-MAIL_DOMAIN="{fill this field}"
-MAIL_PASS="{fill this field}"
+MAIL_USER= #fill this field
+MAIL_DOMAIN= #fill this field
+MAIL_PASS= #fill this field
 
 # Application Configuration
-JWT_SECRET="{fill this field}"
-ENABLE_SSL=true
+JWT_SECRET= #fill this field
+ENABLE_SSL=true #false or true
 ```
 
 Build docker container
@@ -84,7 +85,7 @@ Run docker containers
 $ docker-compose up -d
 ```
 
-Server will be available at port 80
+Server will be externally available at port 443
 
 ## Test
 
